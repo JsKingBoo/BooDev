@@ -46,3 +46,7 @@ v0.3.4
  
 v0.4.0
  - Add CompassJumpTo file
+
+v0.4.1
+ - Keep yaw and pitch when teleporting with CompassJumpTo
+ - Raise player by 1 block
