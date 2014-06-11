@@ -1,6 +1,6 @@
 name: BooDev
 main: com.jskingboo.boodev.Main
-version: 0.4.0
+version: 0.4.1
 authors:
   - JsKingBoo
 description: Map dev plugin that's better than Elevation
