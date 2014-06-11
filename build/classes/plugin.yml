@@ -1,0 +1,22 @@
+name: BooDev
+main: com.jskingboo.boodev.Main
+version: 0.4.0
+authors:
+  - JsKingBoo
+description: Map dev plugin that's better than Elevation
+commands:
+  gm:
+    description: Toggle between creative and survival
+    usage: /gm
+  enchant:
+    description: Almost unrestrained enchanting
+    usage: /enchant <enchantment ID> <enchantment level>
+  name:
+    description: Renames item
+    usage: /name <name>
+  lore:
+    description: Add a line of lore to an item
+    usage: /lore <line>
+  jumpto:
+    description: Jump to block being pointed to
+    usage: /jumpto
