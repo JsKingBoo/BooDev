@@ -50,3 +50,7 @@ v0.4.0
 v0.4.1
  - Keep yaw and pitch when teleporting with CompassJumpTo
  - Raise player by 1 block
+ 
+v0.5.0
+ - Add WorldFilter code (currently disabled)
+ - Add Brush

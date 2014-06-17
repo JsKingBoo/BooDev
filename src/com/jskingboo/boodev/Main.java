@@ -18,6 +18,10 @@ public class Main extends JavaPlugin {
         getCommand("name").setExecutor(new NameAndLore());
         getCommand("lore").setExecutor(new NameAndLore());
         getCommand("jumpto").setExecutor(new CompassJumpTo());
+        getCommand("slap").setExecutor(new playerInteraction());
+        getCommand("rocket").setExecutor(new playerInteraction());        
+        getCommand("halt").setExecutor(new playerInteraction());        
+        getCommand("hook").setExecutor(new playerInteraction());
     }
     
     @Override

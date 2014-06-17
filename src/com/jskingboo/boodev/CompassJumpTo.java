@@ -37,7 +37,7 @@ public class CompassJumpTo implements Listener, CommandExecutor {
         Player player = event.getPlayer();
         
         if (player.getItemInHand().getType() == Material.COMPASS){
-            if (event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.LEFT_CLICK_AIR){
+            if (event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR){
                 event.setCancelled(true);
             }
             jumpTo(player);
