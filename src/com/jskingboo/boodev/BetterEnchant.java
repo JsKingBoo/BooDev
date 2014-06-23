@@ -31,8 +31,8 @@ public class BetterEnchant implements CommandExecutor {
                     int enchLevel = (int) Integer.parseInt(args[1]);
                     Enchantment enchType = null;
                     
-                    if (enchLevel < 1 || enchLevel > 127){
-                        player.sendMessage("Error: Enchantment must be between 1 and 127 inclusive");
+                    if (enchLevel < -1000 || enchLevel > 1000){
+                        player.sendMessage("Error: Enchantment must be between -1000 and 1000 inclusive");
                         return true;
                     }
                     

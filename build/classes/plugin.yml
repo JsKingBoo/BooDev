@@ -1,6 +1,6 @@
 name: BooDev
 main: com.jskingboo.boodev.Main
-version: 0.4.1
+version: 0.6.0
 authors:
   - JsKingBoo
 description: Map dev plugin that's better than Elevation
@@ -20,3 +20,21 @@ commands:
   jumpto:
     description: Jump to block being pointed to
     usage: /jumpto
+  slap:
+    description: Slap a person
+    usage: /slap <player>
+  rocket:
+    description: Send someone flying upwards!
+    usage: /rocket <player>
+  halt:
+    description: Stop someone in his/her tracks
+    usage: /halt <player>
+  hook:
+    description: Hook someone towards you
+    usage: /hook <player>
+  brush:
+    description: Get a brush
+    usage: /brush <sphere/cube> <radius> <block>
+  villager:
+    description: Edit villager attributes
+    usage: /villager <set/add> (use inventory slots to set trades) OR /villager prof <id>

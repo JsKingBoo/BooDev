@@ -12,7 +12,7 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable(){
         plugin = this;
-        registerEvents(this, new CompassJumpTo());
+        registerEvents(this, new CompassJumpTo(), new Brush());
         getCommand("gm").setExecutor(new GamemodeSwitch());
         getCommand("enchant").setExecutor(new BetterEnchant());
         getCommand("name").setExecutor(new NameAndLore());
@@ -22,6 +22,8 @@ public class Main extends JavaPlugin {
         getCommand("rocket").setExecutor(new playerInteraction());        
         getCommand("halt").setExecutor(new playerInteraction());        
         getCommand("hook").setExecutor(new playerInteraction());
+        getCommand("brush").setExecutor(new Brush());
+        getCommand("villager").setExecutor(new VillagerShop());
     }
     
     @Override

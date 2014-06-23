@@ -31,12 +31,12 @@ public class playerInteraction implements CommandExecutor {
         } else if (label.equals("rocket")){
             sender.sendMessage("You rocketed " + player.getName());
             player.sendMessage("You were rocketed by " + sender.getName());       
-            player.setVelocity(new Vector(0, 1, 0));
+            player.setVelocity(new Vector(0, 10, 0));
             return true;
         } else if (label.equals("halt")){
             sender.sendMessage("You halted " + player.getName());
             player.sendMessage("You were halted by " + sender.getName());
-            player.setVelocity(new Vector(0, 1, 0));
+            player.setVelocity(new Vector(0, 0, 0));
             return true;
         } else if (label.equals("hook")){
             if (sender instanceof Player){

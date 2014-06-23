@@ -13,22 +13,26 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class WorldFilter implements Listener, CommandExecutor{
 
+    int x1 = -1;
+    int y1 = -1;
+    int z1 = -1;
+    int x2 = -1;
+    int y2 = -1;
+    int z2 = -1;    
+    
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        
-        int x1 = -1;
-        int y1 = -1;
-        int z1 = -1;
-        int x2 = -1;
-        int y2 = -1;
-        int z2 = -1;
-        
+
         if (sender instanceof Player){
             
             Player player = (Player) sender;
@@ -51,7 +55,7 @@ public class WorldFilter implements Listener, CommandExecutor{
                     //give player selection wand
                     ItemStack cubeWand = new ItemStack(Material.WOOD_AXE);
                     ItemMeta cubeMeta = cubeWand.getItemMeta();
-                    cubeMeta.setDisplayName("§rWand");
+                    cubeMeta.setDisplayName("Wand");
                     List<String> cubeLore = new ArrayList<String>();
                     cubeLore.add("Select regions, WorldEdit style");
                     cubeMeta.setLore(cubeLore);
@@ -90,27 +94,36 @@ public class WorldFilter implements Listener, CommandExecutor{
                          player.sendMessage("Error: Invalid material ID");
                          return true;
                     }  
-                        
-                    if (args[1].equals("cube") || args[1] == null){
 
-                        //fill cube
-                        for (int x3 = x1; x3 < x2; x3++){
-                            for (int y3 = y1; y3 < y2; y3++){
-                                for (int z3 = z1; z3 < z2; z3++){
+                    double cX = (x2 - x1) / 2; //center points
+                    double cY = (y2 - y1) / 2;
+                    double cZ = (z2 - z1) / 2;
+                    
+                    double lX = Math.abs(x2 - x1); //length width height
+                    double lY = Math.abs(y2 - y1);                    
+                    double lZ = Math.abs(z2 - z1);      
+                    
+                    for (int x3 = x1; x3 < x2; x3++){
+                        for (int y3 = y1; y3 < y2; y3++){
+                            for (int z3 = z1; z3 < z2; z3++){
+                                
+                                if (args[1].equals("rect") || args[1] == null){
                                     world.getBlockAt(x3, y3, z3).setType(Material.getMaterial(id));
-                                }
+                                } else if (args[1].equals("diamond")){
+                                    player.sendMessage("Can't think of fail-proof formula, UUURRRRG");
+                                } else if (args[1].equals("vcyl")){
+                                    player.sendMessage("how to ellipse?");
+                                } else if (args[1].equals("hcyl")){
+                                    player.sendMessage("go away I'm busy");
+                                } else if (args[1].equals("elli")){
+                                    player.sendMessage("JsKingBoo can't be bothered to try and code this in");
+                                }                                
+                                //world.getBlockAt(x3, y3, z3).setType(Material.getMaterial(id));
                             }
                         }
-                        
-                        return true;
-                        
-                    } else if (args[1].equals("vcyl")){
-                        player.sendMessage("JsKingBoo is lazy. Try again later");
-                        return true;
-                    } else if (args[1].equals("ellipse")){
-                        player.sendMessage("JsKingBoo can't be bothered to try and code this in");
-                        return true;
                     }
+                    
+
                 }
                 
             }
@@ -121,5 +134,37 @@ public class WorldFilter implements Listener, CommandExecutor{
         
         return true;
     }
-
+    
+    
+    @EventHandler(priority=EventPriority.HIGH)
+    public void onPlayerUse(PlayerInteractEvent event){
+        Player player = event.getPlayer();
+        
+        if (player.getItemInHand().getType() == Material.WOOD_AXE && player.getItemInHand().getItemMeta().getDisplayName().equals("Wand")){
+            if (event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR){
+                event.setCancelled(true);
+                
+                if (event.getAction() == Action.LEFT_CLICK_BLOCK){
+                    x1 = player.getLocation().getBlockX();
+                    y1 = player.getLocation().getBlockY();
+                    z1 = player.getLocation().getBlockZ();
+                    player.sendMessage("Set position 1 to " + x1 + y1 + z1);
+                } else if (event.getAction() == Action.RIGHT_CLICK_BLOCK){
+                    x2 = player.getLocation().getBlockX();
+                    y2 = player.getLocation().getBlockY();
+                    z2 = player.getLocation().getBlockZ();
+                    player.sendMessage("Set position 1 to " + x1 + y1 + z1);                 
+                }
+            }
+            
+            ItemStack brush = player.getItemInHand();
+            ItemMeta bMeta = brush.getItemMeta();
+        
+            String name = bMeta.getDisplayName();
+            
+        }
+        
+    }
+    
+    
 }

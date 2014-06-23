@@ -54,3 +54,7 @@ v0.4.1
 v0.5.0
  - Add WorldFilter code (currently disabled)
  - Add Brush
+ 
+v0.6.0
+ - Various bugfixes to BetterEnchant, Brush, WorldFilter (still disabled), and playerInteraction files
+ - Added VillagerShop, uses Villager Trade API
